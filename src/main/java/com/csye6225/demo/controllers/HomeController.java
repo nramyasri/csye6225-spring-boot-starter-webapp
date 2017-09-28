@@ -1,20 +1,23 @@
 package com.csye6225.demo.controllers;
 
 
+import com.csye6225.demo.UserRepository;
+import com.csye6225.demo.pojo.User;
 import com.google.gson.JsonObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
 @Controller
 public class HomeController {
+  @Autowired
+  private UserRepository userRepository;
 
   private final static Logger logger = LoggerFactory.getLogger(HomeController.class);
 
@@ -49,5 +52,7 @@ public class HomeController {
     jsonObject.addProperty("message", "authorized for /testPost");
     return jsonObject.toString();
   }
+
+
 
 }
